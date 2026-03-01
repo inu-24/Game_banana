@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Profile - Banana Math Puzzle</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Boxicons -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="navbar">
+        <b><b><a href="home.html">Home</a></b></b>
+        <b><b><a href="levels.html">Levels</a></b></b>
+        <b><b><a href="leaderboard.html">Leaderboard</a></b></b>
+        <b><b><a href="profile.html">Profile</a></b></b>
+        <b><b><a href="settings.html">Settings</a></b></b>
+    </nav>
+</header>
+
+<section class="section">
+
+    <!-- BACK ARROW -->
+    <a href="home.html" class="back-arrow">
+        <i class='bx bx-arrow-back'></i>
+    </a>
+
+    <!-- TITLE -->
+    <h1 class="profile-title">👤 Profile</h1>
+
+    <!-- PROFILE CARD -->
+    <div class="profile-container">
+
+        <div class="profile-card">
+
+            <h2>Inuli Gunasekara</h2>
+            <p><strong>Email:</strong> gunasekarainuli@gmail.com</p>
+            <p><strong>Total Score:</strong> 950</p>
+            <p><strong>Current Level:</strong> Easy</p>
+
+            <button>Edit Profile</button>
+
+        </div>
+
+    </div>
+</section>
+<script>
+if(localStorage.getItem("darkMode") === "enabled"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+
+</body>
+</html>
