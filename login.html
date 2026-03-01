@@ -30,10 +30,10 @@
         <div class="logreg-box">
 
             <!-- LOGIN FORM -->
-<div class="form-box login">
-    <h2>Login</h2>
+          <div class="form-box login">
+           <h2>Login</h2>
 
-    <form action="login.php" method="POST">
+        <form action="login.php" method="POST">
 
         <div class="input-box">
             <span class="icon"><i class="bx bx-envelope"></i></span>
@@ -57,12 +57,14 @@
 
     </form>
 </div>
+        
+
 
 <!-- REGISTER FORM -->
 <div class="form-box register">
     <h2>Registration</h2>
 
-    <form action="register.php" method="POST">
+    <form action="register.php" method="POST" onsubmit="return checkPasswords();">
 
         <div class="input-box">
             <span class="icon"><i class="bx bxs-user"></i></span>
@@ -78,8 +80,14 @@
 
         <div class="input-box">
             <span class="icon"><i class="bx bx-lock-alt"></i></span>
-            <input type="password" name="password" required>
+            <input type="password" name="password" id="password" required>
             <label>Password</label>
+        </div>
+
+        <div class="input-box">
+            <span class="icon"><i class="bx bx-lock-alt"></i></span>
+            <input type="password" name="confirm_password" id="confirm_password" required>
+            <label>Confirm Password</label>
         </div>
 
         <button type="submit" class="btn">Register</button>
@@ -94,11 +102,26 @@
 </div>
         </div>
     </div>
-
     <img src="monkey.png" class="monkey-img" alt="Monkey">
 
 </section>
 
-<script src="script.js"></script>
+<script src="script.js">
+
+function checkPasswords() {
+    const pass = document.getElementById('password').value;
+    const confirm = document.getElementById('confirm_password').value;
+    if (pass !== confirm) {
+        alert("Passwords do not match!");
+        return false; // prevent form submission
+    }
+    if (pass.length < 6) {
+        alert("Password must be at least 6 characters!");
+        return false;
+    }
+    return true;
+}
+
+</script>
 </body>
 </html>
