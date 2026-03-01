@@ -1,0 +1,819 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Poppins", sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+}
+
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 80px;
+    padding: 0 100px;
+    display: flex;
+    align-items: center;
+    z-index: 99;
+}
+
+/* Navbar full width */
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;   
+    align-items: center;
+}
+
+/* Home link */
+.navbar a{
+    color: #ffffff;             
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    transition: 0.3s;
+    margin-right: 20px;
+}
+
+.navbar a:hover{
+    color: #f7f7f7;
+    transform: scale(1.05);
+}
+
+.btnlogin-popup{
+    width:120px;
+    height:40px;
+    background:transparent;
+    border:2px solid rgb(238, 237, 237);
+    background-color: #f7f3f3;
+    color:#0f0f0f;
+    border-radius:10px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.btnlogin-popup:hover{
+    background:#fff;
+    color:#162938;
+}
+
+/* BACKGROUND */
+.section{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:100vh;
+    background:url("bg 1.png") no-repeat center;
+    background-size:cover;
+}
+
+/* WRAPPER */
+.wrapper{
+    position:absolute;
+    top:80px;
+    right:0;
+    width:450px;
+    height:calc(100vh - 80px);
+    background:rgba(255,255,255,0.08);
+    backdrop-filter:blur(20px);
+    border-left:1px solid rgba(255,255,255,0.2);
+    box-shadow:-5px 0 25px rgba(0,0,0,0.3);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:40px;
+    transform:scale(0);
+    transition:.3s ease;
+}
+
+/* POPUP OPEN */
+.wrapper.active-popup{
+    transform:scale(1);
+}
+
+/* FORM CONTAINER */
+.logreg-box{
+    width:100%;
+}
+
+/* FORMS */
+.form-box{
+    width:100%;
+}
+
+.form-box.register{
+    display:none;
+}
+
+/* TOGGLE FOR REGISTER */
+.wrapper.active .form-box.login{
+    display:none;
+}
+
+.wrapper.active .form-box.register{
+    display:block;
+}
+
+.form-box h2{
+    text-align:center;
+    color:#fff;
+    margin-bottom:20px;
+}
+
+/* INPUT */
+.input-box{
+    position:relative;
+    width:100%;
+    height:50px;
+    border-bottom:2px solid #fff;
+    margin:30px 0;
+}
+
+.input-box input{
+    width:100%;
+    height:100%;
+    background:transparent;
+    border:none;
+    outline:none;
+    color:#fff;
+    padding:0 35px 0 5px;
+}
+
+.input-box label{
+    position:absolute;
+    top:50%;
+    left:5px;
+    transform:translateY(-50%);
+    color:#fff;
+    transition:.3s;
+}
+
+.input-box input:focus~label,
+.input-box input:valid~label{
+    top:-5px;
+}
+
+.input-box .icon{
+    position:absolute;
+    right:8px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#fff;
+}
+
+/* REMEMBER */
+.remember-forgot{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin:15px 0 25px;
+    color:#fff;
+    font-size:14px;
+}
+
+.remember-forgot a{
+    color:#fff;
+    text-decoration:none;
+}
+
+.remember-forgot a:hover{
+    text-decoration:underline;
+}
+
+/* BUTTON */
+.btn{
+    width:100%;
+    height:45px;
+    background:#fff;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+    color:#162938;
+}
+
+/* LINKS */
+.logreg-link{
+    text-align:center;
+    margin-top:20px;
+    color:#fff;
+}
+
+.logreg-link a{
+    color:#fff;
+    text-decoration:none;
+    font-weight:600;
+}
+
+.logreg-link a:hover{
+    text-decoration:underline;
+}
+
+/* CLOSE ICON */
+.icon-close{
+    position:absolute;
+    top:0;
+    right:0;
+    width:45px;
+    height:45px;
+    background:#162938;
+    color:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:24px;
+    border-bottom-left-radius:20px;
+    cursor:pointer;
+}
+.section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Centered Title */
+.game-title {
+    position: absolute;
+    top: 34%;
+    width: 100%;
+    text-align: center;
+    font-size: 65px;
+    font-weight: 700;
+    color: hwb(0 5% 95%);
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+.monkey-img {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 500px;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+    animation: float 3s ease-in-out infinite;
+}
+/* HOME PAGE */
+
+/* HOME PAGE FIX */
+
+.home-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-title {
+    font-size: 55px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 30px;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.home-card {
+    width: 500px;
+    padding: 35px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    backdrop-filter: blur(15px);
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.home-card h2 {
+    margin-bottom: 10px;
+}
+
+.home-card p {
+    font-size: 15px;
+    margin-bottom: 25px;
+}
+
+.home-buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.home-buttons button {
+    height: 55px;
+    border: none;
+    border-radius: 15px;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    background: rgba(255,255,255,0.3);
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.home-buttons button:hover {
+    background: #ffffff;
+    color: #162938;
+    transform: scale(1.05);
+}
+
+
+/* ============================= */
+/* LEVELS PAGE */
+/* ============================= */
+
+/* Title */
+.levels-title {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Levels container */
+.levels-container {
+    position: absolute;
+    top: 35%;
+    display: flex;
+    gap: 40px;
+}
+
+/* Level card */
+.level-card {
+    width: 260px;
+    padding: 25px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+/* Hover animation */
+.level-card:hover {
+    transform: translateY(-10px);
+}
+
+/* Level title */
+.level-card h2 {
+    margin-bottom: 10px;
+}
+
+/* Level description */
+.level-card p {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+/* Play button */
+.level-card button {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fff;
+    color: #162938;
+    transition: 0.3s ease;
+}
+
+.level-card button:hover {
+    background: #162938;
+    color: #fff;
+}
+
+/* Back Arrow */
+.back-arrow {
+    position: absolute;
+    top: 100px;
+    left: 40px;
+    font-size: 30px;
+    color: #fff;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(10px);
+    padding: 12px;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.back-arrow:hover {
+    background: #fff;
+    color: #162938;
+    transform: scale(1.1);
+}
+/* ============================= */
+/* LEADERBOARD PAGE */
+/* ============================= */
+
+.leaderboard-title {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: 700;
+    color: #ffffff;
+    text-shadow: 0 4px 8px rgba(0,0,0,0.4);
+}
+
+/* Leaderboard container */
+.leaderboard-container {
+    position: absolute;
+    top: 35%;
+    width: 600px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Table style */
+.leaderboard-container table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #fff;
+    text-align: center;
+}
+
+/* Header */
+.leaderboard-container th {
+    padding: 12px;
+    font-size: 18px;
+    border-bottom: 2px solid rgba(255,255,255,0.4);
+}
+
+/* Rows */
+.leaderboard-container td {
+    padding: 12px;
+    font-size: 18px;
+}
+
+/* Row hover effect */
+.leaderboard-container tbody tr:hover {
+    background: rgba(39, 39, 39, 0.2);
+    transition: 0.3s;
+}
+.clear-btn {
+    margin-top: 20px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fff;
+    color: #162938;
+    transition: 0.3s ease;
+}
+
+.clear-btn:hover {
+    background: #162938;
+    color: #fff;
+}
+
+
+/* PROFILE PAGE */
+
+.profile-title {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Profile container */
+.profile-container {
+    position: absolute;
+    top: 35%;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+/* Profile card */
+.profile-card {
+    width: 350px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    text-align: center;
+    color: #f8f6f6;
+    box-shadow: 0 10px 22px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.profile-card:hover {
+    transform: translateY(-8px);
+}
+
+/* Profile text */
+.profile-card h2 {
+    margin-bottom: 10px;
+}
+
+.profile-card p {
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+/* Edit button */
+.profile-card button {
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fff;
+    color: #162938;
+    transition: 0.3s ease;
+}
+
+.profile-card button:hover {
+    background: #82b9e2;
+    color: #fff;
+}
+
+/* ============================= */
+/* SETTINGS PAGE */
+/* ============================= */
+
+.settings-title {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.settings-container {
+    position: absolute;
+    top: 35%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.settings-card {
+    width: 400px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(15px);
+    color: #fff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Each setting row */
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+/* Toggle Switch */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    background-color: #ccc;
+    border-radius: 34px;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 4px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+input:checked + .slider {
+    background-color: #fff;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Logout Button */
+.logout-btn {
+    margin-top: 25px;
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fff;
+    color: #162938;
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    background: #162938;
+    color: #fff;
+}
+
+/* ============================= */
+/* DARK MODE */
+/* ============================= */
+
+body.dark-mode {
+    background: #0f172a;
+}
+
+/* Dark background for section */
+body.dark-mode .section {
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+}
+
+/* Dark glass cards */
+body.dark-mode .level-card,
+body.dark-mode .profile-card,
+body.dark-mode .leaderboard-container,
+body.dark-mode .settings-card,
+body.dark-mode .home-container button {
+    background: rgba(0, 0, 0, 0.4);
+    color: #fff;
+}
+
+/* Dark navbar links */
+body.dark-mode .navbar a {
+    color: #fff;
+}
+
+/* Dark buttons */
+body.dark-mode button {
+    background: #1e293b;
+    color: #fff;
+}
+
+body.dark-mode button:hover {
+    background: #fff;
+    color: #162938;
+}
+
+/* ============================= */
+/* GAME PAGE - BANANA API */
+/* ============================= */
+.game-section {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: url("bg 1.png") no-repeat center;
+    background-size: cover;
+}
+
+
+/* Title */
+.game-title {
+    position: absolute;
+    top: 18%;
+    width: 100%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+/* Glass Card */
+.game-card {
+    width: 450px;
+    padding: 30px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.18);
+    backdrop-filter: blur(15px);
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+/* Puzzle Image */
+.game-card img {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    background: #fff;
+    padding: 10px;
+}
+
+/* Input */
+.game-card input {
+    width: 100%;
+    height: 45px;
+    border-radius: 10px;
+    border: none;
+    margin-bottom: 15px;
+    padding: 10px;
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Buttons */
+.game-card button {
+    width: 100%;
+    height: 45px;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    background: #fff;
+    color: #162938;
+    transition: 0.3s ease;
+}
+
+.game-card button:hover {
+    background: #162938;
+    color: #fff;
+}
+
+/* Result Text */
+#result {
+    margin: 10px 0;
+    font-weight: 600;
+}
+
+/* Back Button */
+.back-btn {
+    display: block;
+    margin-top: 10px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.back-btn:hover {
+    text-decoration: underline;
+}
+.game-info {
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+/* Correct animation */
+.correct-animation {
+    animation: glow 0.5s ease;
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px #00ff99; }
+    50% { box-shadow: 0 0 30px #00ff99; }
+    100% { box-shadow: 0 0 10px #00ff99; }
+}
+
