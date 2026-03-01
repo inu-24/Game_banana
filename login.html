@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Banana Math Puzzle Game</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="navbar">
+        <div class="nav-left">
+            <a href="home.html">Home</a>
+        </div>
+
+        <div class="nav-right">
+            <button class="btnlogin-popup">Login</button>
+        </div>
+    </nav>
+</header>
+
+<section class="section">
+
+    <h1 class="game-title">Banana Math Puzzle Game</h1>
+
+    <div class="wrapper">
+
+        <div class="logreg-box">
+
+            <!-- LOGIN FORM -->
+<div class="form-box login">
+    <h2>Login</h2>
+
+    <form action="login.php" method="POST">
+
+        <div class="input-box">
+            <span class="icon"><i class="bx bx-envelope"></i></span>
+            <input type="email" name="email" required>
+            <label>Email</label>
+        </div>
+
+        <div class="input-box">
+            <span class="icon"><i class="bx bx-lock-alt"></i></span>
+            <input type="password" name="password" required>
+            <label>Password</label>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+
+        <div class="logreg-link">
+            <p>Don't have an account?
+                <a href="#" class="register-link">Register</a>
+            </p>
+        </div>
+
+    </form>
+</div>
+
+<!-- REGISTER FORM -->
+<div class="form-box register">
+    <h2>Registration</h2>
+
+    <form action="register.php" method="POST">
+
+        <div class="input-box">
+            <span class="icon"><i class="bx bxs-user"></i></span>
+            <input type="text" name="fullname" required>
+            <label>Full Name</label>
+        </div>
+
+        <div class="input-box">
+            <span class="icon"><i class="bx bx-envelope"></i></span>
+            <input type="email" name="email" required>
+            <label>Email</label>
+        </div>
+
+        <div class="input-box">
+            <span class="icon"><i class="bx bx-lock-alt"></i></span>
+            <input type="password" name="password" required>
+            <label>Password</label>
+        </div>
+
+        <button type="submit" class="btn">Register</button>
+
+        <div class="logreg-link">
+            <p>Already have an account?
+                <a href="#" class="login-link">Login</a>
+            </p>
+        </div>
+
+    </form>
+</div>
+        </div>
+    </div>
+
+    <img src="monkey.png" class="monkey-img" alt="Monkey">
+
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
