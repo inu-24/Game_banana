@@ -60,75 +60,52 @@
 <script>
 function loadLeaderboard() {
     let tableBody = document.getElementById("leaderboard-body");
+    tableBody.innerHTML = "";
 
-    // Check if "lastScore" exists in localStorage (from game page)
-    let lastScore = localStorage.getItem("lastScore");
-    let lastLevel = localStorage.getItem("lastLevel");
-    if (lastScore !== null) {
-        alert(`⏰ Time's Up! You scored ${lastScore} points on ${lastLevel} level!`);
-        localStorage.removeItem("lastScore");
-        localStorage.removeItem("lastLevel");
-    }
-
-    // First load local scores (for guests)
-    let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
-
-    if (leaderboard.length === 0) {
-        tableBody.innerHTML = `
-            <tr>
-                <td colspan="3">No scores yet. Play the game!</td>
-            </tr>
-        `;
-    } else {
-        // Sort highest score first
-        leaderboard.sort((a,b) => b.score - a.score);
-        displayLeaderboard(leaderboard);
-    }
-    
-    // Then fetch from database (will override if logged in)
     fetch('get_leaderboard.php')
         .then(response => response.json())
         .then(data => {
-            if (!data.error && data.length > 0) {
-                displayLeaderboard(data);
+
+            if (!data || data.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="3">No scores yet. Play the game!</td>
+                    </tr>
+                `;
+                return;
             }
+
+            data.forEach((player, index) => {
+
+                let medal = "";
+                if(index === 0) medal = " 🥇";
+                else if(index === 1) medal = " 🥈";
+                else if(index === 2) medal = " 🥉";
+
+                let name = player.fullname || "Unknown";
+                let score = player.score || 0;
+
+                let row = `
+                    <tr>
+                        <td>${index + 1}${medal}</td>
+                        <td>${name}</td>
+                        <td>${score}</td>
+                    </tr>
+                `;
+
+                tableBody.innerHTML += row;
+            });
         })
-        .catch(err => console.log('Error loading database leaderboard'));
+        .catch(error => {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="3">Error loading leaderboard.</td>
+                </tr>
+            `;
+        });
 }
 
-function displayLeaderboard(data) {
-    let tableBody = document.getElementById("leaderboard-body");
-    tableBody.innerHTML = "";
-    
-    data.forEach((player, index) => {
-        let medal = "";
-        if(index === 0) medal = " 🥇";
-        else if(index === 1) medal = " 🥈";
-        else if(index === 2) medal = " 🥉";
-        
-        let name = player.name || player.fullname;
-        let score = player.score;
-        
-        let row = `
-            <tr>
-                <td>${index + 1}${medal}</td>
-                <td>${name}</td>
-                <td>${score}</td>
-            </tr>
-        `;
-        
-        tableBody.innerHTML += row;
-    });
-}
-
-function clearLeaderboard(){
-    localStorage.removeItem("leaderboard");
-    loadLeaderboard();
-}
-
-// Load leaderboard when page opens
 loadLeaderboard();
 </script>
-
 </body>
 </html>
