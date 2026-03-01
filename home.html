@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home - Banana Math Puzzle</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="navbar">
+        <b><b><a href="home.html">Home</a></b></b>
+        <b><b><a href="levels.html">Levels</a></b></b>
+        <b><b><a href="leaderboard.html">Leaderboard</a></b></b>
+        <b><b><a href="profile.html">Profile</a></b></b>
+        <b><b><a href="settings.html">Settings</a></b></b>
+    </nav>
+</header>
+
+<section class="section home-section">
+
+    <h1 class="home-title">Banana Puzzle Game</h1>
+
+    <div class="home-card">
+        <h2>Welcome Back! 🍌</h2>
+        <p>
+            Train your brain with fun math challenges!
+            Choose a section below to get started.
+        </p>
+
+        <div class="home-buttons">
+            <button onclick="location.href='levels.html'">🎮 Levels</button>
+            <button onclick="location.href='leaderboard.html'">🏆 Leaderboard</button>
+            <button onclick="location.href='profile.html'">👤 Profile</button>
+            <button onclick="location.href='settings.html'">⚙ Settings</button>
+        </div>
+    </div>
+
+</section>
+
+<script>
+if(localStorage.getItem("darkMode") === "enabled"){
+    document.body.classList.add("dark-mode");
+}
+</script>
+
+</body>
+</html>
