@@ -13,18 +13,6 @@ if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);
 }
 
-// Get user info (optional, if needed for preferences)
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT dark_mode FROM users WHERE id = ?";
-$stmt = $conn->prepare($sql);
-$stmt->bind_param("i", $user_id);
-$stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
-$darkMode = $user['dark_mode'] ?? 'disabled';
-
-$stmt->close();
-$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -74,15 +62,6 @@ $conn->close();
                 <span>🎵 Background Music</span>
                 <label class="switch">
                     <input type="checkbox" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-
-            <!-- DARK MODE -->
-            <div class="setting-item">
-                <span>🌙 Dark Mode</span>
-                <label class="switch">
-                    <input type="checkbox" id="darkModeToggle" <?php echo ($darkMode === 'enabled') ? 'checked' : ''; ?>>
                     <span class="slider"></span>
                 </label>
             </div>
