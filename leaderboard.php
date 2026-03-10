@@ -23,11 +23,11 @@ $result = $conn->query($sql);
 
 <header class="header">
     <nav class="navbar">
-        <a href="home.html">Home</a>
-        <a href="levels.html">Levels</a>
+        <a href="home.php">Home</a>
+        <a href="levels.php">Levels</a>
         <a href="leaderboard.php">Leaderboard</a>
         <a href="profile.php">Profile</a>
-        <a href="settings.html">Settings</a>
+        <a href="settings.php">Settings</a>
     </nav>
 </header>
 
