@@ -41,7 +41,10 @@ $fullname = $_SESSION['fullname'];
             Train your brain with fun math challenges!
             Choose a section below to get started.
         </p>
-
+        <div class="clock-box">
+            🌍 Current Sri Lanka Time: <span id="worldClock">Loading...</span>
+        </div>
+        
         <div class="home-buttons">
             <button onclick="location.href='levels.php'">🎮 Levels</button>
             <button onclick="location.href='leaderboard.php'">🏆 Leaderboard</button>
@@ -56,6 +59,25 @@ $fullname = $_SESSION['fullname'];
 if(localStorage.getItem("darkMode") === "enabled"){
     document.body.classList.add("dark-mode");
 }
+function loadWorldClock(){
+
+fetch("https://timeapi.io/api/Time/current/zone?timeZone=Asia/Colombo")
+.then(response => response.json())
+.then(data => {
+
+let time = data.time;
+
+document.getElementById("worldClock").innerText = time;
+
+})
+.catch(error => {
+document.getElementById("worldClock").innerText = "Time unavailable";
+});
+
+}
+
+loadWorldClock();
+setInterval(loadWorldClock,10000);
 </script>
 
 </body>
