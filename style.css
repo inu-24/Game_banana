@@ -817,3 +817,12 @@ body.dark-mode button:hover {
     100% { box-shadow: 0 0 10px #00ff99; }
 }
 
+.clock-box{
+    margin-top:20px;
+    font-size:18px;
+    color:#fff;
+    background:#2c3e50;
+    padding:10px 20px;
+    border-radius:10px;
+    display:inline-block;
+}
