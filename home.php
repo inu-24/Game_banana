@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// If user not logged in → redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
     exit();
@@ -35,7 +34,6 @@ $fullname = $_SESSION['fullname'];
             z-index: 999;
             white-space: nowrap;
         }
-
         .clock-label {
             font-size: 13px;
             font-weight: 500;
@@ -43,13 +41,11 @@ $fullname = $_SESSION['fullname'];
             letter-spacing: 2px;
             text-transform: uppercase;
         }
-
         .clock-divider {
             width: 1px;
             height: 28px;
             background: rgba(255,255,255,0.25);
         }
-
         .clock-time {
             font-size: 28px;
             font-weight: 700;
@@ -57,6 +53,65 @@ $fullname = $_SESSION['fullname'];
             letter-spacing: 3px;
             text-shadow: 0 0 15px rgba(255,225,53,0.6);
             font-variant-numeric: tabular-nums;
+        }
+
+        /* Daily Challenge - fixed top right under navbar */
+        .daily-challenge-corner {
+            position: fixed;
+            top: 90px;
+            right: 30px;
+            z-index: 998;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 6px;
+        }
+
+        .daily-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: rgba(255,255,255,0.7);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .daily-btn {
+            padding: 12px 22px;
+            border: none;
+            border-radius: 14px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+            color: #1a1a1a;
+            transition: 0.3s ease;
+            box-shadow: 0 4px 18px rgba(255,210,0,0.45);
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        .daily-btn:hover {
+            transform: scale(1.06);
+            box-shadow: 0 6px 25px rgba(255,210,0,0.65);
+        }
+
+        .daily-btn:disabled {
+            background: linear-gradient(135deg, #666, #999);
+            color: #ddd;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        /* Pulsing glow animation to catch attention */
+        @keyframes pulse-glow {
+            0%   { box-shadow: 0 4px 18px rgba(255,210,0,0.45); }
+            50%  { box-shadow: 0 4px 28px rgba(255,210,0,0.85); }
+            100% { box-shadow: 0 4px 18px rgba(255,210,0,0.45); }
+        }
+
+        .daily-btn:not(:disabled) {
+            animation: pulse-glow 2s ease-in-out infinite;
         }
     </style>
 </head>
@@ -73,6 +128,14 @@ $fullname = $_SESSION['fullname'];
         <b><b><a href="logout.php">Logout</a></b></b>
     </nav>
 </header>
+
+<!-- Daily Challenge button - top right under navbar -->
+<div class="daily-challenge-corner">
+    <span class="daily-label">Today's Challenge</span>
+    <button class="daily-btn" id="dailyBtn" onclick="gotoDailyChallenge()">
+        🌟 Daily Challenge
+    </button>
+</div>
 
 <section class="section home-section">
 
@@ -107,12 +170,28 @@ if(localStorage.getItem("darkMode") === "enabled"){
     document.body.classList.add("dark-mode");
 }
 
+// Check if daily challenge already completed today
+function checkDailyChallenge() {
+    let lastPlayed = localStorage.getItem("dailyChallengeDate");
+    let today = new Date().toDateString();
+    let btn = document.getElementById("dailyBtn");
+    if (lastPlayed === today) {
+        btn.disabled = true;
+        btn.innerText = "✅ Done Today!";
+    }
+}
+
+function gotoDailyChallenge() {
+    location.href = "daily_challenge.php";
+}
+
+checkDailyChallenge();
+
 function loadWorldClock(){
     fetch("https://timeapi.io/api/Time/current/zone?timeZone=Asia/Colombo")
     .then(response => response.json())
     .then(data => {
-        let time = data.time;
-        document.getElementById("worldClock").innerText = time;
+        document.getElementById("worldClock").innerText = data.time;
     })
     .catch(error => {
         document.getElementById("worldClock").innerText = "Unavailable";
