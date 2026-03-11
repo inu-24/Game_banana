@@ -15,14 +15,9 @@ $fullname = $_SESSION['fullname'];
 <head>
     <meta charset="UTF-8">
     <title>Levels - Banana Math Puzzle</title>
-
-    <!-- Main CSS -->
     <link rel="stylesheet" href="style.css">
-
-    <!-- Boxicons for back arrow -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
-
 <body>
 
 <header class="header">
@@ -42,14 +37,10 @@ $fullname = $_SESSION['fullname'];
     <a href="home.php" class="back-arrow">
         <i class='bx bx-arrow-back'></i>
     </a>
-
-    <!-- PAGE TITLE -->
     <h1 class="levels-title">Choose Your Level, <?php echo htmlspecialchars($fullname); ?>!</h1>
 
     <!-- LEVEL CARDS -->
     <div class="levels-container">
-
-        <!-- EASY -->
         <div class="level-card">
             <h2>🍌 Easy</h2>
             <p>60 seconds to play</p>
@@ -58,7 +49,6 @@ $fullname = $_SESSION['fullname'];
             <button onclick="location.href='game_easy.php?level=easy'">Play</button>
         </div>
 
-        <!-- MEDIUM --> 
         <div class="level-card">
             <h2>🍌🍌 Medium</h2>
             <p>45 seconds to play</p>
@@ -67,7 +57,6 @@ $fullname = $_SESSION['fullname'];
             <button onclick="location.href='game_medium.php?level=medium'">Play</button>
         </div>
 
-        <!-- HARD -->
         <div class="level-card">
             <h2>🍌🍌🍌 Hard</h2>
             <p>30 seconds to play</p>
@@ -79,12 +68,5 @@ $fullname = $_SESSION['fullname'];
     </div>
 
 </section>
-
-<script>
-if(localStorage.getItem("darkMode") === "enabled"){
-    document.body.classList.add("dark-mode");
-}
-</script>
-
 </body>
 

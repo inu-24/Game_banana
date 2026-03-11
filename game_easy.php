@@ -51,6 +51,7 @@ let score = 0;
 let timeLeft = 60;
 let timer;
 
+// use AI tool(claude)
 // Load puzzle from API
 function loadPuzzle() {
     fetch("https://marcconrad.com/uob/banana/api.php")
@@ -111,7 +112,7 @@ function endGame() {
 
 // Save score to localStorage & backend
 function saveScore(finalScore) {
-    // Save to localStorage for quick leaderboard
+  
     let username = "<?php echo htmlspecialchars($fullname); ?>";
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     leaderboard.push({ name: username, score: finalScore });

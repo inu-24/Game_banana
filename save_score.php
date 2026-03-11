@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("db.php"); // ✅ make sure this is your correct DB file
+include("db.php"); 
 
 // Check login
 if (!isset($_SESSION['user_id'])) {
@@ -27,13 +27,13 @@ if (!in_array($level, $allowed_levels)) {
     exit();
 }
 
-// ✅ 1️⃣ Insert into scores table
+// Insert into scores table
 $insert = $conn->prepare("INSERT INTO scores (user_id, score, level, played_at) VALUES (?, ?, ?, NOW())");
 $insert->bind_param("iis", $user_id, $score, $level);
 $insert->execute();
 $insert->close();
 
-// ✅ 2️⃣ Update users table
+//  Update users table
 $update = $conn->prepare("UPDATE users 
                           SET total_score = total_score + ?, 
                               current_level = ? 

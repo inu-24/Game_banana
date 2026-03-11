@@ -7,7 +7,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Database connection (if you want to save preferences)
 $conn = new mysqli("localhost", "root", "", "banana_game");
 if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);

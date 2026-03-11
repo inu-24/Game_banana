@@ -57,8 +57,6 @@ $conn->close();
     <a href="home.php" class="back-arrow">
         <i class='bx bx-arrow-back'></i>
     </a>
-
-    <!-- TITLE -->
     <h1 class="profile-title">👤 Profile</h1>
 
     <!-- PROFILE CARD -->
@@ -80,13 +78,6 @@ $conn->close();
     </div>
 
 </section>
-
-<script>
-// Dark mode support
-if(localStorage.getItem("darkMode") === "enabled"){
-    document.body.classList.add("dark-mode");
-}
-</script>
 
 </body>
 </html>

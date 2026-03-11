@@ -5,8 +5,6 @@
     <title>Settings - Banana Math Puzzle</title>
 
     <link rel="stylesheet" href="style.css">
-
-    <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
@@ -28,11 +26,7 @@
     <a href="home.php" class="back-arrow">
         <i class='bx bx-arrow-back'></i>
     </a>
-
-    <!-- TITLE -->
     <h1 class="settings-title">⚙ Settings</h1>
-
-    <!-- SETTINGS CARD -->
     <div class="settings-container">
 
         <div class="settings-card">
@@ -55,15 +49,6 @@
                 </label>
             </div>
 
-            <!-- DARK MODE -->
-            <div class="setting-item">
-                <span>🌙 Dark Mode</span>
-                <label class="switch">
-                    <input type="checkbox" id="darkModeToggle">
-                    <span class="slider"></span>
-                </label>
-            </div>
-
             <!-- LOGOUT BUTTON -->
             <button class="logout-btn" onclick="location.href='login.html'">
                 🚪 Logout
@@ -76,13 +61,6 @@
 </section>
 <script>
 
-const toggle = document.getElementById("darkModeToggle");
-
-// Check saved mode
-if(localStorage.getItem("darkMode") === "enabled"){
-    document.body.classList.add("dark-mode");
-    toggle.checked = true;
-}
 
 // Toggle function
 toggle.addEventListener("change", function(){

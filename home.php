@@ -187,6 +187,7 @@ function gotoDailyChallenge() {
 
 checkDailyChallenge();
 
+// world clock 
 function loadWorldClock(){
     fetch("https://timeapi.io/api/Time/current/zone?timeZone=Asia/Colombo")
     .then(response => response.json())

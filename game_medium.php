@@ -116,7 +116,7 @@ function endGame() {
 // Save score to database
 function saveScore(finalScore) {
 
-    let currentLevel = "Medium";   // ✅ FIXED HERE
+    let currentLevel = "Medium";   
 
     fetch("save_score.php", {
         method: "POST",

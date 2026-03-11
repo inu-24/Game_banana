@@ -59,8 +59,6 @@
     </form>
 </div>
         
-
-
 <!-- REGISTER FORM -->
 <div class="form-box register">
     <h2>Registration</h2>
@@ -109,12 +107,13 @@
 
 <script src="script.js">
 
+// prevent form submission
 function checkPasswords() {
     const pass = document.getElementById('password').value;
     const confirm = document.getElementById('confirm_password').value;
     if (pass !== confirm) {
         alert("Passwords do not match!");
-        return false; // prevent form submission
+        return false; 
     }
     if (pass.length < 6) {
         alert("Password must be at least 6 characters!");
