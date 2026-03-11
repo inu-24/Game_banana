@@ -14,6 +14,7 @@ $fullname = $_SESSION['fullname'];
     <meta charset="UTF-8">
     <title>Banana API Game - Medium</title>
     <link rel="stylesheet" href="style.css">
+    <script src="gameover.js"></script>
 </head>
 
 <body>
@@ -105,12 +106,13 @@ function animateCorrect(){
 
 // End Game
 function endGame() {
-    document.getElementById("result").innerText = 
-        "⏰ Time's Up! Final Score: " + score;
 
-    alert("Game Over! Your score: " + score);
+    document.getElementById("result").innerText = "⏰ Time's Up!";
 
-    saveScore(score);
+    showGameOver(score, "Medium", function() {
+        saveScore(score);
+    });
+
 }
 
 // Save score to database
