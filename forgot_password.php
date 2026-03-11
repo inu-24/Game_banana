@@ -25,7 +25,7 @@ $stmt=$conn->prepare($sql);
 $stmt->bind_param("sss",$token,$expiry,$email);
 $stmt->execute();
 
-$link="http://localhost/Game_SE - Copy/reset_password.php?token=".$token;
+$link="http://localhost/Game_SE/reset_password.php?token=".$token;
 
 echo "Click this link to reset password:<br>";
 echo "<a href='$link'>$link</a>";
