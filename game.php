@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <?php
 session_start();
 
@@ -19,26 +18,4 @@ if (!isset($_SESSION['user_id'])) {
 <a href="logout.php">Logout</a>
 
 </body>
-=======
-<?php
-session_start();
-
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.html");
-    exit();
-}
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Banana Game</title>
-</head>
-<body>
-
-<h1>🍌 Welcome <?php echo $_SESSION['fullname']; ?>!</h1>
-<a href="logout.php">Logout</a>
-
-</body>
->>>>>>> 648619ed53ed5cc8b1ffb44b069d98bc98d4a942
 </html>
