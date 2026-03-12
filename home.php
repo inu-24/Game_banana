@@ -129,7 +129,6 @@ $fullname = $_SESSION['fullname'];
     </nav>
 </header>
 
-<!-- Daily Challenge button - top right under navbar -->
 <div class="daily-challenge-corner">
     <span class="daily-label">Today's Challenge</span>
     <button class="daily-btn" id="dailyBtn" onclick="gotoDailyChallenge()">

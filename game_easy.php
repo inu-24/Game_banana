@@ -1,3 +1,5 @@
+<!-- Source :- use AI Tool(claude) -->
+
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
@@ -52,7 +54,6 @@ let score = 0;
 let timeLeft = 60;
 let timer;
 
-// use AI tool(claude)
 // Load puzzle from API
 function loadPuzzle() {
     fetch("https://marcconrad.com/uob/banana/api.php")
@@ -124,7 +125,7 @@ function saveScore(finalScore) {
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 
     // Save to database
-    let currentLevel = "easy"; // Easy game page
+    let currentLevel = "easy"; 
     fetch("save_score.php", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -135,7 +136,7 @@ function saveScore(finalScore) {
     .catch(err => console.log("Error saving score to database"));
 }
 
-// Start everything
+
 loadPuzzle();
 startTimer();
 

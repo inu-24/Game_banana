@@ -1,9 +1,10 @@
+<!-- Source :- use AI Tool(claude) -->
+
 <?php
 include("db.php");
 
 $success = "";
 $error = "";
-
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $email = trim($_POST['email']);
@@ -34,7 +35,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     . dirname($_SERVER['PHP_SELF']);
         $link = $base_url . "/reset_password.php?token=" . $token;
 
-        $success = $link; // In production, send this via email instead
+        $success = $link; 
     }
 }
 ?>

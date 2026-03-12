@@ -1,8 +1,10 @@
+<!-- Source :- use AI Tool(claude) -->
+
 <?php
 session_start();
-require_once("db.php"); // uses your DB connection
+require_once("db.php"); 
 
-// If not logged in → go to login
+// If not logged in, redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
     exit();
@@ -10,7 +12,7 @@ if (!isset($_SESSION['user_id'])) {
 
 $user_id = $_SESSION['user_id'];
 
-// Get user data
+// Fetch user data from database (fullname, email, score, level)
 $stmt = $conn->prepare("SELECT fullname, email, total_score, current_level FROM users WHERE id = ?");
 $stmt->bind_param("i", $user_id);
 $stmt->execute();
@@ -25,25 +27,43 @@ if ($result && $result->num_rows > 0) {
 
 $stmt->close();
 
-// Define level thresholds and calculate progress
-$levels = ['Easy' => 0, 'Medium' => 100, 'Hard' => 300];
 $level_labels = ['Easy', 'Medium', 'Hard'];
-$current_level = $user['current_level'] ?? 'Easy';
-$total_score = (int)$user['total_score'];
+$total_score  = (int)$user['total_score'];
 
-// Determine progress within current level
-$level_index = array_search($current_level, $level_labels);
-if ($level_index === false) $level_index = 0;
+// Determine level index purely based on score
+if ($total_score >= 300) {
+    $level_index = 2; // Hard
+} elseif ($total_score >= 100) {
+    $level_index = 1; // Medium
+} else {
+    $level_index = 0; // Easy
+}
 
-$level_start = array_values($levels)[$level_index];
-$level_end = isset(array_values($levels)[$level_index + 1]) ? array_values($levels)[$level_index + 1] : $level_start + 200;
-$next_level = isset($level_labels[$level_index + 1]) ? $level_labels[$level_index + 1] : 'MAX';
+// Score boundaries for each level
+$level_ranges = [
+    0 => ['start' => 0,   'end' => 100],  // Easy:   0-99
+    1 => ['start' => 100, 'end' => 300],  // Medium: 100-299
+    2 => ['start' => 300, 'end' => 500],  // Hard:   300-499 (max range)
+];
 
+$level_start = $level_ranges[$level_index]['start'];
+$level_end   = $level_ranges[$level_index]['end'];
+
+// Name of next level (or 'MAX' if already at Hard)
+$next_level = isset($level_labels[$level_index + 1])
+              ? $level_labels[$level_index + 1]
+              : 'MAX';
+
+// Current level name (derived from score)
+$current_level = $level_labels[$level_index];
+
+// Calculate progress % within the current level range (0-100)
 $progress_raw = ($total_score - $level_start) / ($level_end - $level_start) * 100;
-$progress = min(100, max(0, $progress_raw));
+$progress     = min(100, max(0, $progress_raw));
+
+// Points still needed to reach the next level
 $score_needed = max(0, $level_end - $total_score);
 
-// Stats: count wins per level from scores table (if it exists)
 $conn->close();
 ?>
 <!DOCTYPE html>
@@ -51,10 +71,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <title>Profile - Banana Math Puzzle</title>
-
     <link rel="stylesheet" href="style.css">
-
-    <!-- Boxicons -->
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
 </head>
 
@@ -73,20 +90,18 @@ $conn->close();
 
 <section class="section">
 
-    <!-- BACK ARROW -->
+    <!-- BACK ARROW: returns to home page -->
     <a href="home.php" class="back-arrow">
         <i class='bx bx-arrow-back'></i>
     </a>
+
     <h1 class="profile-title">👤 Profile</h1>
 
-    <!-- PROFILE CARD -->
     <div class="profile-container">
-
         <div class="profile-card">
 
             <h2><?php echo htmlspecialchars($user['fullname']); ?></h2>
 
-            <!-- Info rows (matching original style) -->
             <p><strong>Email:</strong> <?php echo htmlspecialchars($user['email']); ?></p>
             <p><strong>Total Score:</strong> <?php echo (int)$user['total_score']; ?></p>
             <p><strong>Current Level:</strong> <?php echo htmlspecialchars($current_level); ?></p>
@@ -94,9 +109,10 @@ $conn->close();
             <button onclick="window.location.href='edit_profile.php'">
                 Edit Profile
             </button>
-
-            <!-- Progress Bar (below button) -->
+            
             <div class="progress-section">
+
+                <!-- Header: label on left, percentage on right -->
                 <div class="progress-header">
                     <span class="progress-label">
                         <i class='bx bx-trending-up'></i>
@@ -105,12 +121,14 @@ $conn->close();
                     <span class="progress-percent"><?php echo round($progress); ?>%</span>
                 </div>
 
+                
                 <div class="progress-bar-track">
                     <div class="progress-bar-fill" style="width: <?php echo $progress; ?>%">
                         <div class="progress-shine"></div>
                     </div>
                 </div>
 
+                <!-- Footer: points needed on left, % complete on right -->
                 <div class="progress-footer">
                     <?php if ($next_level === 'MAX'): ?>
                         <span>🏆 Max Level Reached!</span>
@@ -120,7 +138,7 @@ $conn->close();
                     <span><?php echo round($progress); ?>% complete</span>
                 </div>
 
-                <!-- Level milestones -->
+                <!-- Level milestone dots: Easy / Medium / Hard -->
                 <div class="level-milestones">
                     <?php foreach ($level_labels as $i => $lbl): ?>
                         <div class="milestone <?php echo ($i <= $level_index) ? 'reached' : ''; ?>">
@@ -129,10 +147,10 @@ $conn->close();
                         </div>
                     <?php endforeach; ?>
                 </div>
+
             </div>
 
         </div>
-
     </div>
 
 </section>
