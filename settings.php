@@ -1,9 +1,4 @@
 <?php
-// ============================================================
-// settings.php - Game Settings Page
-// Allows user to toggle Sound, Music, Dark Mode and Logout
-// ============================================================
-
 session_start();
 
 // Redirect to login if user is not logged in
@@ -12,7 +7,6 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-// Connect to database
 $conn = new mysqli("localhost", "root", "", "banana_game");
 if ($conn->connect_error) {
     die("Database connection failed: " . $conn->connect_error);

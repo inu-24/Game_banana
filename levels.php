@@ -1,3 +1,4 @@
+<!-- Source :- use AI Tool(claude) -->
 <?php
 session_start();
 
@@ -38,8 +39,6 @@ $fullname = $_SESSION['fullname'];
         <i class='bx bx-arrow-back'></i>
     </a>
     <h1 class="levels-title">Choose Your Level, <?php echo htmlspecialchars($fullname); ?>!</h1>
-
-    <!-- LEVEL CARDS -->
     <div class="levels-container">
         <div class="level-card">
             <h2>🍌 Easy</h2>
