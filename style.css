@@ -505,7 +505,6 @@ body{
     text-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
-/* Profile container */
 .profile-container {
     position: absolute;
     top: 35%;
@@ -514,7 +513,6 @@ body{
     width: 100%;
 }
 
-/* Profile card */
 .profile-card {
     width: 350px;
     padding: 30px;
@@ -531,7 +529,6 @@ body{
     transform: translateY(-8px);
 }
 
-/* Profile text */
 .profile-card h2 {
     margin-bottom: 10px;
 }
@@ -558,6 +555,122 @@ body{
 .profile-card button:hover {
     background: #82b9e2;
     color: #fff;
+}
+
+/* ---- PROGRESS BAR (below Edit Profile button) ---- */
+
+.progress-section {
+    margin-top: 18px;
+    background: rgba(0,0,0,0.15);
+    border-radius: 14px;
+    padding: 14px;
+    text-align: left !important;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.progress-header {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.progress-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    opacity: 0.9;
+}
+
+.progress-label i {
+    margin-right: 4px;
+}
+
+.progress-percent {
+    font-size: 13px;
+    font-weight: 700;
+    color: #a8e063;
+}
+
+.progress-bar-track {
+    width: 100%;
+    height: 12px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 8px;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    display: block;
+}
+
+.progress-bar-fill {
+    display: block;
+    height: 12px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #56ab2f, #a8e063);
+    position: relative;
+    transition: width 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+    min-width: 8px;
+}
+
+.progress-shine {
+    position: absolute;
+    top: 2px;
+    left: 6px;
+    right: 6px;
+    height: 3px;
+    background: rgba(255,255,255,0.4);
+    border-radius: 999px;
+}
+
+.progress-footer {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #fff;
+    opacity: 0.75;
+    margin-bottom: 12px;
+}
+
+.level-milestones {
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0 4px;
+    width: 100%;
+}
+
+.milestone {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center;
+    gap: 4px;
+    font-size: 11px;
+    color: #fff;
+    opacity: 0.45;
+    transition: 0.3s;
+}
+
+.milestone.reached {
+    opacity: 1;
+}
+
+.milestone-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    border: 2px solid rgba(255,255,255,0.4);
+    transition: 0.3s;
+}
+
+.milestone.reached .milestone-dot {
+    background: #a8e063;
+    border-color: #56ab2f;
+    box-shadow: 0 0 6px #a8e063;
 }
 
 /* ============================= */
