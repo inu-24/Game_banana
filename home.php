@@ -52,7 +52,7 @@ $guest_total = $is_guest ? ($_SESSION['guest_total_score'] ?? 0) : null;
             padding: 2px 10px;
             font-size: 12px;
         }
-    </style>
+
         /* Floating clock at bottom center */
         .clock-box {
             position: fixed;
