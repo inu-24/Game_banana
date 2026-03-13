@@ -2,13 +2,14 @@
 <?php
 session_start();
 
-// Protect page: if user not logged in → redirect to login page
+// Allow both logged-in users AND guests
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
     exit();
 }
 
 $fullname = $_SESSION['fullname'];
+$is_guest = isset($_SESSION['is_guest']) && $_SESSION['is_guest'];
 ?>
 
 <!DOCTYPE html>
@@ -68,4 +69,3 @@ $fullname = $_SESSION['fullname'];
 
 </section>
 </body>
-
