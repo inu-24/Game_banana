@@ -6,7 +6,9 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-$fullname = $_SESSION['fullname'];
+$fullname  = $_SESSION['fullname'];
+$is_guest  = isset($_SESSION['is_guest']) && $_SESSION['is_guest'];
+$guest_total = $is_guest ? ($_SESSION['guest_total_score'] ?? 0) : null;
 ?>
 
 <!DOCTYPE html>
@@ -16,6 +18,41 @@ $fullname = $_SESSION['fullname'];
     <title>Home - Banana Math Puzzle</title>
     <link rel="stylesheet" href="style.css">
     <style>
+        /* ── Guest banner ── */
+        .guest-banner {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background: linear-gradient(90deg, #f7971e, #ffd200);
+            color: #1a1a1a;
+            text-align: center;
+            padding: 8px 16px;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 2000;
+            letter-spacing: 0.4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+        }
+        .guest-banner a {
+            background: #1a1a1a;
+            color: #FFE135;
+            padding: 3px 12px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .guest-banner a:hover { opacity: 0.85; }
+        body.has-guest-banner .header { top: 36px; }
+        body.has-guest-banner .daily-challenge-corner { top: 126px; }
+        .guest-score-badge {
+            background: rgba(0,0,0,0.15);
+            border-radius: 12px;
+            padding: 2px 10px;
+            font-size: 12px;
+        }
+    </style>
         /* Floating clock at bottom center */
         .clock-box {
             position: fixed;
@@ -116,15 +153,28 @@ $fullname = $_SESSION['fullname'];
     </style>
 </head>
 
-<body>
+<body<?php echo $is_guest ? ' class="has-guest-banner"' : ''; ?>>
+
+<?php if ($is_guest): ?>
+<div class="guest-banner">
+    👤 You are playing as a Guest
+    <?php if ($guest_total !== null): ?>
+        <span class="guest-score-badge">⭐ Session Score: <?php echo $guest_total; ?></span>
+    <?php endif; ?>
+    <a href="login.html">Register / Login to save scores</a>
+    <a href="logout.php">Exit</a>
+</div>
+<?php endif; ?>
 
 <header class="header">
     <nav class="navbar">
         <b><b><a href="home.php">Home</a></b></b>
         <b><b><a href="levels.php">Levels</a></b></b>
         <b><b><a href="leaderboard.php">Leaderboard</a></b></b>
+        <?php if (!$is_guest): ?>
         <b><b><a href="profile.php">Profile</a></b></b>
         <b><b><a href="settings.php">Settings</a></b></b>
+        <?php endif; ?>
         <b><b><a href="logout.php">Logout</a></b></b>
     </nav>
 </header>
@@ -150,8 +200,12 @@ $fullname = $_SESSION['fullname'];
         <div class="home-buttons">
             <button onclick="location.href='levels.php'">🎮 Levels</button>
             <button onclick="location.href='leaderboard.php'">🏆 Leaderboard</button>
+            <?php if (!$is_guest): ?>
             <button onclick="location.href='profile.php'">👤 Profile</button>
             <button onclick="location.href='settings.php'">⚙ Settings</button>
+            <?php else: ?>
+            <button onclick="location.href='login.html'" style="background:linear-gradient(135deg,#f7971e,#ffd200);color:#1a1a1a;">📝 Register to Save Scores</button>
+            <?php endif; ?>
         </div>
     </div>
 
