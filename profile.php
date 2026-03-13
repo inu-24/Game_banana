@@ -1,5 +1,4 @@
 <!-- Source :- use AI Tool(claude) -->
-
 <?php
 session_start();
 require_once("db.php"); 
@@ -7,6 +6,12 @@ require_once("db.php");
 // If not logged in, redirect to login page
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
+    exit();
+}
+
+// Guests cannot access profile — redirect with message
+if (isset($_SESSION['is_guest']) && $_SESSION['is_guest']) {
+    header("Location: home.php?guest_blocked=profile");
     exit();
 }
 
@@ -32,18 +37,18 @@ $total_score  = (int)$user['total_score'];
 
 // Determine level index purely based on score
 if ($total_score >= 300) {
-    $level_index = 2; // Hard
+    $level_index = 2; 
 } elseif ($total_score >= 100) {
-    $level_index = 1; // Medium
+    $level_index = 1; 
 } else {
-    $level_index = 0; // Easy
+    $level_index = 0;
 }
 
 // Score boundaries for each level
 $level_ranges = [
-    0 => ['start' => 0,   'end' => 100],  // Easy:   0-99
-    1 => ['start' => 100, 'end' => 300],  // Medium: 100-299
-    2 => ['start' => 300, 'end' => 500],  // Hard:   300-499 (max range)
+    0 => ['start' => 0,   'end' => 100],  
+    1 => ['start' => 100, 'end' => 300],  
+    2 => ['start' => 300, 'end' => 500],  
 ];
 
 $level_start = $level_ranges[$level_index]['start'];
@@ -90,7 +95,6 @@ $conn->close();
 
 <section class="section">
 
-    <!-- BACK ARROW: returns to home page -->
     <a href="home.php" class="back-arrow">
         <i class='bx bx-arrow-back'></i>
     </a>

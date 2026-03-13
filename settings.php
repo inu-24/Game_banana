@@ -1,9 +1,13 @@
 <?php
 session_start();
-
-// Redirect to login if user is not logged in
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.html");
+    exit();
+}
+
+// Guests cannot access settings
+if (isset($_SESSION['is_guest']) && $_SESSION['is_guest']) {
+    header("Location: home.php?guest_blocked=settings");
     exit();
 }
 

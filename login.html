@@ -1,4 +1,4 @@
-<!-- Source :- watch youtube videos -->
+<!-- Source :- watch youtube videos & use AI Tool -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,6 +6,50 @@
     <title>Banana Math Puzzle Game</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        /* ── Guest button ── */
+        .guest-area {
+            margin-top: 18px;
+            text-align: center;
+        }
+        .guest-divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 14px 0 12px;
+            color: rgba(255,255,255,0.55);
+            font-size: 13px;
+        }
+        .guest-divider::before,
+        .guest-divider::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+        }
+        .btn-guest {
+            width: 100%;
+            padding: 12px;
+            border: 2px dashed rgba(255, 220, 50, 0.7);
+            border-radius: 8px;
+            background: rgba(255, 220, 50, 0.08);
+            color: #FFE135;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            transition: background 0.25s, transform 0.2s;
+        }
+        .btn-guest:hover {
+            background: rgba(255, 220, 50, 0.22);
+            transform: scale(1.02);
+        }
+        .guest-note {
+            font-size: 11px;
+            color: rgba(255,255,255,0.45);
+            margin-top: 6px;
+        }
+    </style>
 </head>
 
 <body>
@@ -55,6 +99,15 @@
             <p>Don't have an account?
                 <a href="#" class="register-link">Register</a>
             </p>
+        </div>
+
+        <!-- ── Guest Access ── -->
+        <div class="guest-area">
+            <div class="guest-divider">or</div>
+            <a href="guest_login.php">
+                <button type="button" class="btn-guest">🎮 Play as Guest</button>
+            </a>
+            <p class="guest-note">No account needed · Scores won't be saved to leaderboard</p>
         </div>
 
     </form>
