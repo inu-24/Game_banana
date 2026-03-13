@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Verify password
         if (password_verify($password, $user['password'])) {
 
-            // ── EMAIL VERIFICATION CHECK ──────────────────────────
+            // ── EMAIL VERIFICATION CHECK 
             if (isset($user['is_verified']) && $user['is_verified'] == 0) {
                 echo "<script>
                         alert('⚠️ Email Not Verified!\\n\\nYour email address has not been verified yet.\\nPlease check your inbox for the verification link.\\n\\nIf you did not receive the email, contact support.');
@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                       </script>";
                 exit();
             }
-            // ─────────────────────────────────────────────────────
+           
 
             // Store session
             $_SESSION['user_id']  = $user['id'];
