@@ -8,6 +8,8 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 $fullname = $_SESSION['fullname'];
+$is_guest = isset($_SESSION['is_guest']) && $_SESSION['is_guest'];
+$save_endpoint = $is_guest ? "guest_save_score.php" : "save_score.php";
 ?>
 
 <!DOCTYPE html>
@@ -120,20 +122,32 @@ function endGame() {
 function saveScore(finalScore) {
   
     let username = "<?php echo htmlspecialchars($fullname); ?>";
+    let isGuest  = <?php echo $is_guest ? 'true' : 'false'; ?>;
+    let endpoint = "<?php echo $save_endpoint; ?>";
+
     let leaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     leaderboard.push({ name: username, score: finalScore });
     localStorage.setItem("leaderboard", JSON.stringify(leaderboard));
 
-    // Save to database
+    // Save to database (or guest session)
     let currentLevel = "easy"; 
-    fetch("save_score.php", {
+    fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: "score=" + finalScore + "&level=" + currentLevel
     })
     .then(res => res.text())
-    .then(data => console.log(data))
-    .catch(err => console.log("Error saving score to database"));
+    .then(data => {
+        console.log(data);
+        if (isGuest) {
+            // Show a friendly reminder to register
+            setTimeout(() => {
+                let reg = confirm("🎮 Great game, " + username + "!\n\nYour score (" + finalScore + ") was saved for this session only.\n\nRegister a free account to save scores permanently and appear on the Leaderboard!\n\nGo to Register page now?");
+                if (reg) location.href = "login.html";
+            }, 300);
+        }
+    })
+    .catch(err => console.log("Error saving score"));
 }
 
 
