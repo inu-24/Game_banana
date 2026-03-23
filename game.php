@@ -1,3 +1,4 @@
+<!-- Source: Own Work — basic session guard and welcome page -->
 <?php
 session_start();
 

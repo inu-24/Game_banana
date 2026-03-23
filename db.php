@@ -1,7 +1,9 @@
+<!-- Source: Own Work -->
+
 <?php
 $servername = "localhost";
-$username = "root";        // default for XAMPP
-$password = "";            // default empty in XAMPP
+$username = "root";        
+$password = "";            
 $database = "banana_game";
 
 $conn = new mysqli($servername, $username, $password, $database);

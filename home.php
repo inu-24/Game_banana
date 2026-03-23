@@ -1,3 +1,4 @@
+<!-- Source: Mixed — page structure and guest banner UI assisted by Claude AI; world clock API integration and daily challenge logic are Own Work -->
 <?php
 session_start();
 

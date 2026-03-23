@@ -1,4 +1,4 @@
-<!-- Source :- use AI Tool(claude) -->
+<!-- Source: AI-assisted (Claude AI) — used to generate this file -->
 
 <?php
 include("db.php");

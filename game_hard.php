@@ -1,4 +1,4 @@
-<!-- Source :- use AI Tool(claude) -->
+<!-- Source: AI-assisted (Claude AI) — used to generate/structure this file's logic and layout -->
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {

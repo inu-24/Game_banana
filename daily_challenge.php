@@ -1,3 +1,4 @@
+<!-- Source: AI-assisted (Claude AI) — used to generate this file's logic -->
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {

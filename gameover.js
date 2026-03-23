@@ -1,3 +1,6 @@
+// =============================================================
+// Source: AI-assisted (Claude AI)
+
 function showGameOver(score, level, onConfirm) {
 
   // ── inject styles once 
