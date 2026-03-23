@@ -1,7 +1,6 @@
+<!-- Source: AI tool -->
+ 
 <?php
-// guest_save_score.php
-// Saves a guest's score into their PHP session (no database)
-
 session_start();
 
 if (!isset($_SESSION['is_guest']) || !$_SESSION['is_guest']) {
