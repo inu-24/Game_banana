@@ -1,3 +1,4 @@
+<!-- Source :- use AI Tool(claude) -->
 <?php
 error_reporting(E_ALL & ~E_WARNING);
 // send_verification_email.php
